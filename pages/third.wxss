@@ -1,0 +1,6 @@
+.tx::after{
+	border-color:white;
+	width:30rpx;
+	height:30rpx;
+	margin-top:-15rpx;
+}

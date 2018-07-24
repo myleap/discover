@@ -1,0 +1,23 @@
+<view style="background:url(https://www.myleap.cn/neeqAdmin/public/images/indexbg.jpeg) no-repeat;width:{{winWidth}}px;height:{{winHeight}}px;background-size:100% 100%;">
+  <navigator class="" style="padding:100rpx 100rpx;" url="./company/search?type=detail">
+    <view class="weui-search-bar__form">
+      <view class="weui-search-bar__box">
+        <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
+        <input type="text" class="weui-search-bar__input" confirm-type="搜索" placeholder="搜索" bindinput="toSearch" />
+      </view>
+      <label class="weui-search-bar__label">
+        <icon class="weui-icon-search" type="search" size="14"></icon>
+        <view class="weui-search-bar__text">搜索群组</view>
+      </label>
+    </view>
+  </navigator>
+  <navigator style="height:122rpx;display:flex;position:absolute;bottom:200rpx;right:0rpx;background-color:#cbc9cc;" url="./company/search?type=evaluate">
+    <view style="position:absolute;left:-60rpx;">
+      <image style="border:1rpx solid #cbc9cc;border-radius:50%;width:120rpx;height:120rpx;" src="../images/logo.png"></image>
+    </view>
+    <view style="margin-left:80rpx;font-size:30rpx;color:#989898;line-height:40rpx;height:80rpx;margin-top:20rpx;margin-right:30rpx;">
+      <view>搜一搜</view>
+      <view>找你想要的企业........</view>
+    </view>
+  </navigator>
+</view>

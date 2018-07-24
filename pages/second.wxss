@@ -1,0 +1,37 @@
+.weui-flex{
+    text-align: center;
+    width:100%;
+}
+.weui-cells{
+    font-size: 30rpx;
+}
+
+
+.navbar{
+	width: 100%;
+	white-space: nowrap;
+	background-color:white;
+}
+.navbar-item{
+	display: inline-block;
+	padding:10px 15px;
+	font-size:15px;
+	text-align:center;
+}
+.navbar .active{
+	color:red;
+	border-bottom:2px solid red;
+}
+.weui-tab__panel{
+	padding-top:0px;
+	margin-top:0px;
+}
+.weui-cell-title{
+	background-color:#f8f8f8;
+}
+.weui-cell::before{
+	left:0px !important;
+}
+.weui-search-bar{
+    height:48px;
+}

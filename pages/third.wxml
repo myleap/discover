@@ -1,0 +1,37 @@
+<view>
+
+  <view class="weui-cell weui-cell_access" style="padding:20px 15px;color:white;background:url(http://d.5857.com/qsdb_130620/desk_001.jpg) no-repeat;" hover-class="weui-cell_active" wx:if="{{userInfo}}">
+    <view class="weui-cell__hd" style="height:120rpx;">
+      <image src="{{userInfo.avatar}}" style="border-radius:50%;width:120rpx;height:120rpx"></image>
+    </view>
+    <view class="weui-cell__bd" style="margin-left:50rpx;">{{userInfo.user_nicename}}</view>
+  </view>
+  <view bindtap="login" class="weui-cell weui-cell_access" style="padding:20px 15px;color:white;background:url(http://d.5857.com/qsdb_130620/desk_001.jpg) no-repeat;" hover-class="weui-cell_active" wx:if="{{!userInfo}}">
+    <view class="weui-cell__hd" style="height:120rpx;">
+      <image src="../images/defaultavatar.png" style="border-radius:50%;width:120rpx;height:120rpx;background-color:white;"></image>
+    </view>
+    <view class="weui-cell__bd" style="margin-left:50rpx;">登录</view>
+  </view>
+  <view class="weui-cells weui-cells_after-title"> 
+    <view wx:if="{{isManager}}" bindtap="toManage" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+      <view class="weui-cell__bd">认证管理</view>
+      <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+    </view>
+    
+    <view wx:if="{{userInfo&&isauth==1}}" bindtap="toCertification" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+      <view class="weui-cell__bd">实名认证</view>
+      <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+    </view>
+    <view wx:if="{{userInfo&&isauth==2}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+      <view class="weui-cell__bd">实名认证</view>
+      <view class="weui-cell__ft weui-cell__ft_in-access">已申请认证</view>
+    </view>
+    <view wx:if="{{userInfo&&isauth==3}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+      <view class="weui-cell__bd">实名认证</view>
+      <view class="weui-cell__ft weui-cell__ft_in-access">已认证</view>
+    </view>
+
+  </view>
+  <button bindtap="logout" wx:if="{{userInfo}}" class="weui-btn" type="warn" style="margin:10px 20px;">退出登录</button>
+
+</view>

@@ -1,0 +1,60 @@
+{
+  "pages": [
+    "pages/index",
+    "pages/first",
+    "pages/second",
+    "pages/third",
+    "pages/company/search",
+    "pages/my/certification",
+    "pages/my/manage",
+    "pages/util/success",
+    "pages/my/bindmobile",
+    "pages/viddetail/viddetail",
+    "pages/community/chatbox"
+  ],
+  "window": {
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "金麦粒价值发现",
+    "navigationBarBackgroundColor": "#000000",
+    "backgroundColor": "#000000"
+  },
+  "networkTimeout": {
+    "request": 10000,
+    "connectSocket": 10000,
+    "uploadFile": 10000,
+    "downloadFile": 10000
+  },
+  "tabBar": {
+    "backgroundColor": "#FFFFFF",
+    "borderStyle": "white",
+    "selectedColor": "#8c1a13",
+    "color": "#888888",
+    "list": [
+      {
+        "pagePath": "pages/index",
+        "text": "首页",
+        "iconPath": "images/index.png",
+        "selectedIconPath": "images/indexs.png"
+      },
+      {
+        "pagePath": "pages/first",
+        "text": "cover",
+        "iconPath": "images/pj.png",
+        "selectedIconPath": "images/pjs.png"
+      },
+      {
+        "pagePath": "pages/second",
+        "text": "社群",
+        "iconPath": "images/data.png",
+        "selectedIconPath": "images/datas.png"
+      },
+      {
+        "pagePath": "pages/third",
+        "text": "我的",
+        "iconPath": "images/user.png",
+        "selectedIconPath": "images/users.png"
+      }
+    ]
+  },
+  "debug": false
+}

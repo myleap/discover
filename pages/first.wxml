@@ -1,0 +1,152 @@
+<view class="page">
+  <view class="">
+    <navigator class="weui-search-bar" url="./company/search?type=news">
+      <view class="weui-search-bar__form">
+        <view class="weui-search-bar__box">
+          <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
+          <input type="text" class="weui-search-bar__input" confirm-type="搜索" placeholder="搜索" />
+        </view>
+        <label class="weui-search-bar__label">
+          <icon class="weui-icon-search" type="search" size="14"></icon>
+          <view class="weui-search-bar__text">搜索</view>
+        </label>
+      </view>
+    </navigator>
+    <view class="weui-tab">
+      <view class="navbar" style="display:flex;">
+        <block wx:for="{{tabs}}" wx:key="title">
+          <view class="navbar-item {{activeIndex == index ? 'active' : ''}}" id="{{index}}" style="width:{{barwidth}}px;display:flex;" bindtap="tabClick">
+            <view style="text-align:center;width:35px;height:50px;padding:10px {{(barwidth-35)/2}}px;">
+              <image style="width:35px;height:30px;" src="{{activeIndex == index ? item.urlselect : item.url}}" />
+              <view>{{item.title}}</view>
+            </view>
+          </view>
+        </block>
+      </view>
+      <view class="weui-tab__panel">
+        <swiper style="height:{{scrollheight}}px;" bindchange="changeEvent" current="{{activeIndex}}">
+          <!--解读  -->
+          <swiper-item style="height:{{scrollheight}}px;position:absolute;top:0px;width:100%;transform:translate(0%, 0%) translateZ(0px);">
+            <scroll-view scroll-top="{{evaluatescrolltop}}" style="height:{{scrollheight}}px;" class="weui-tab__content" scroll-y>
+
+              <view class="weui-panel weui-panel_access">
+                <view class="weui-panel__bd">
+                  <block wx:for="{{analysis}}" wx:key="id">
+                    <view class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active" bindtap="openFile" id="{{item.path}}">
+                      <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+                        <image class="" style="width:70px;height:70px;" src="{{item.company_url}}" />
+                      </view>
+                      <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+                        <view class="weui-media-box__title">{{item.title}}</view>
+                        <view class="weui-media-box__info">
+                          <view class="weui-media-box__info__meta">{{item.name}}</view>
+                          <view class="weui-media-box__info__meta">{{item.createtime}}</view>
+                          <view class="weui-media-box__info__meta weui-media-box__info__meta_extra">证券代码({{item.code}})</view>
+                        </view>
+                      </view>
+                    </view>
+                  </block>
+                </view>
+                <view wx:if="{{showmore}}" class="weui-cell weui-cell_access" data-listName="analysis" data-type="3" bindtap="loadMore">
+                  <view style="text-align:center;color:#aaa;width:100%;">查看更多>></view>
+                </view>
+                <view wx:if="{{!showmore}}" class="weui-cell weui-cell_access">
+                  <view style="text-align:center;color:#aaa;width:100%;">已无更多数据</view>
+                </view>
+              </view>
+            </scroll-view>
+          </swiper-item>
+          <!-- 研报 -->
+          <swiper-item style="height:{{scrollheight}}px;position:absolute;top:0px;width:100%;transform:translate(100%, 0%) translateZ(0px);">
+            <scroll-view style="height:{{scrollheight}}px;" class="weui-tab__content" scroll-y>
+              <view class="weui-panel weui-panel_access">
+                <view class="weui-panel__bd">
+                  <view class="weui-panel__bd">
+                    <block wx:for="{{research}}" wx:key="id">
+                      <view class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active" bindtap="openFile" id="{{item.path}}">
+                        <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+                          <image class="" style="width:70px;height:70px;" src="{{item.company_url}}" />
+                        </view>
+                        <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+                          <view class="weui-media-box__title">{{item.title}}</view>
+                          <view class="weui-media-box__info">
+                            <view class="weui-media-box__info__meta">{{item.name}}</view>
+                            <view class="weui-media-box__info__meta">{{item.createtime}}</view>
+                            <view class="weui-media-box__info__meta weui-media-box__info__meta_extra">证券代码({{item.code}})</view>
+                          </view>
+                        </view>
+                      </view>
+                    </block>
+                  </view>
+                  <view wx:if="{{showmore}}" class="weui-cell weui-cell_access" data-listName="research" data-type="2" bindtap="loadMore">
+                    <view style="text-align:center;color:#aaa;width:100%;">查看更多>></view>
+                  </view>
+                  <view wx:if="{{!showmore}}" class="weui-cell weui-cell_access">
+                    <view style="text-align:center;color:#aaa;width:100%;">已无更多数据</view>
+                  </view>
+                </view>
+              </view>
+            </scroll-view>
+          </swiper-item>
+          <!--资讯 -->
+          <swiper-item style="height:{{scrollheight}}px;position:absolute;top:0px;width:100%;transform:translate(400%, 0%) translateZ(0px);">
+            <scroll-view scroll-y style="height:{{scrollheight}}px;background-color:#f8f8f8;" class="weui-tab__content">
+              <view class="weui-panel__bd">
+                <block wx:for="{{news}}" wx:key="id">
+                  <view class="weui-panel" bindlongtap="openUrl" id="{{item.path}}">
+                    <view class="weui-media-box weui-media-box_text">
+                      <view class="weui-media-box__title weui-media-box__title_in-text">{{item.title}}</view>
+                      <view class="weui-media-box__desc">{{item.title}}</view>
+                      <view class="weui-media-box__info">
+                        <view class="weui-media-box__info__meta">{{item.author}}({{item.from}})</view>
+                        <view class="weui-media-box__info__meta">{{item.createtime}}</view>
+                      </view>
+                    </view>
+                  </view>
+                </block>
+              </view>
+              <view wx:if="{{showmore}}" class="weui-cell weui-cell_access" data-listName="news" data-type="4" bindtap="loadMore">
+                <view style="text-align:center;color:#aaa;width:100%;">查看更多>></view>
+              </view>
+              <view wx:if="{{!showmore}}" class="weui-cell weui-cell_access">
+                <view style="text-align:center;color:#aaa;width:100%;">已无更多数据</view>
+              </view>
+            </scroll-view>
+          </swiper-item>
+          <!--视频   -->
+          <swiper-item style="height:{{scrollheight}}px;position:absolute;top:0px;width:100%;transform:translate(400%, 0%) translateZ(0px);">
+            <scroll-view scroll-y style="height:{{scrollheight}}px;background-color:#f8f8f8;" class="weui-tab__content">
+              <view class="weui-panel__bd">
+                <block wx:for="{{videos}}" wx:key="id">
+                  <navigator url="./viddetail/viddetail?vidurl={{item.path}}" class="weui-media-box weui-media-box_text">
+                    <view class="weui-media-box__title weui-media-box__title_in-text">{{item.title}}</view>
+                    <view class="weui-media-box__desc">
+                      <image src="{{item.thumb}}" style="width:100%;height:{{ht}}px"></image>
+                    </view>
+                    <view class="weui-media-box__info" style="position:relative;">
+
+                      <view class="weui-media-box__info__meta" style="line-height:2.3;font-size:13px;">{{item.name}}({{item.code}})</view>
+                      <view class="weui-media-box__info__meta" style="line-height:2.3;font-size:13px;">{{item.createtime}}</view>
+                      <!-- <view style="position:absolute;right:10px;" id="{{index}}" catchtap="joinRoadshow" wx:if="{{item.canjoin==1}}">
+                        <button class="weui-btn mini-btn" type="primary" size="mini">报名</button>
+                      </view> 
+                      <view style="position:absolute;right:10px;" wx:if="{{item.canjoin==2}}">
+                        <button style="background-color:#ddd;" class="weui-btn mini-btn" type="primary" size="mini">已报名</button>
+                      </view>-->
+                    </view>
+                  </navigator>
+                </block>
+              </view>
+              <view wx:if="{{showmore}}" class="weui-cell weui-cell_access" data-listName="videos" data-type="1" bindtap="loadMore">
+                <view style="text-align:center;color:#aaa;width:100%;">查看更多>></view>
+              </view>
+              <view wx:if="{{!showmore}}" class="weui-cell weui-cell_access">
+                <view style="text-align:center;color:#aaa;width:100%;">已无更多数据</view>
+              </view>
+            </scroll-view>
+          </swiper-item>
+        </swiper>
+      </view>
+    </view>
+  </view>
+</view>
